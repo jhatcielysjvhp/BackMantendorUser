@@ -13,7 +13,7 @@ Esta es una API de backend construida con ASP.NET Core 8 que gestiona usuarios, 
 1.  **Clonar el Repositorio :**
     ```bash
     git clone https://github.com/jhatcielysjvhp/BackMantendorUser
-    cd <NOMBRE_DEL_DIRECTORIO_DEL_PROYECTO>
+    cd c:\BackMantendorUser
     ```
 
 2.  **Configurar la Cadena de Conexión:**
