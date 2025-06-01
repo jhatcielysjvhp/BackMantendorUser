@@ -70,5 +70,3 @@ Una vez que la API esté en ejecución:
 
 La API está configurada para permitir solicitudes CORS desde `http://localhost:4200` por defecto, como se define en `Program.cs`. Si tu aplicación frontend se ejecuta en un origen diferente, deberás ajustar la política CORS.
 en este caso es un proyecto Angular en desarrollo local.
-
-## Estructura del Proyecto (Ejemplo)
