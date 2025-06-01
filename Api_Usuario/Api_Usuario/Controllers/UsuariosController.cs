@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Api_Sistema_Usuarios.Models;
 using Api_Sistema_Usuarios.Models.Dtos;
-using Api_Sistema_Usuarios.Models.Dtos.Input; // Importar DTOs de entrada
-using Api_Sistema_Usuarios.Models.Dtos.Output; // Importar DTOs de salida
+using Api_Sistema_Usuarios.Models.Dtos.Input; 
+using Api_Sistema_Usuarios.Models.Dtos.Output;
 using Api_Sistema_Usuarios.Repositories;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -39,7 +39,7 @@ namespace Api_Sistema_Usuarios.Controllers
             return StatusCode(500, new { ErrorCode = resultado, Message = mensaje });
         }
 
-        // GET: api/Usuarios/5
+        // GET: api/Usuarios/id
         [HttpGet("{id}")]
         public async Task<ActionResult<UsuarioResponseDto>> GetUsuario(int id)
         {

@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sistema Usuarios API", Version = "v1" });
 });
 
-// Configure CORS
+// Configure CORS por aplicacion Angular Local
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -32,14 +32,12 @@ builder.Services.AddScoped<VariableRepository>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// Enable CORS (must be before UseAuthorization)
 app.UseCors();
 
 app.UseHttpsRedirection();

@@ -2,10 +2,8 @@
 -- PACKAGES CRUD 
 -- Sistema de Usuarios, Roles y Variables
 -- Creado por: Jhernadez
--- Modificado: Cursores agregados a métodos de consulta
 -- ===================================================================
 
--- Configurar delimitador para procedimientos
 DELIMITER $$
 
 -- ===================================================================
@@ -154,8 +152,6 @@ BEGIN
     -- Obtener total de registros
     SELECT COUNT(*) INTO p_total_registros FROM Roles;
     
-    -- SELECT DIRECTO - Este es tu "cursor" equivalente pero más eficiente
-    -- MariaDB automáticamente retorna este result set al cliente
     SELECT 
         r.Id,
         r.Nombre,
@@ -435,7 +431,6 @@ BEGIN
                     LEAVE read_loop;
                 END IF;
                 
-                -- Retornar los datos del cursor
                 SELECT v_user_id as Id, v_user_nombre as Nombre, v_user_email as Email, 
                        v_user_rol_id as RolId, v_rol_nombre as RolNombre;
             END LOOP;
@@ -471,8 +466,6 @@ BEGIN
     IF p_offset IS NULL OR p_offset < 0 THEN SET p_offset = 0; END IF;
     IF p_limit IS NULL OR p_limit <= 0 OR p_limit > 1000 THEN SET p_limit = 100; END IF;
     
-    -- SELECT DIRECTO - Este es tu "cursor" equivalente pero más eficiente
-    -- MariaDB automáticamente retorna este result set al cliente
     SELECT 
         u.Id,
         u.Nombre,
@@ -690,7 +683,6 @@ BEGIN
                     ROLLBACK;
                 END IF;
             ELSE
-                -- Para tipo 'texto' no hay validaciones adicionales
                 BEGIN END;
         END CASE;
         
@@ -949,7 +941,6 @@ BEGIN
                         ROLLBACK;
                     END IF;
                 ELSE
-                    -- Para tipo 'texto' no hay validaciones adicionales
                     BEGIN END;
             END CASE;
             
@@ -1018,5 +1009,4 @@ BEGIN
 END$$
 
 
--- Restaurar delimitador original
 DELIMITER ;

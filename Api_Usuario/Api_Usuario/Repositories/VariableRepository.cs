@@ -1,6 +1,6 @@
 using System.Data;
-using Api_Sistema_Usuarios.Models.Dtos.Input; // Actualizado
-using Api_Sistema_Usuarios.Models.Dtos.Output; // Actualizado
+using Api_Sistema_Usuarios.Models.Dtos.Input; 
+using Api_Sistema_Usuarios.Models.Dtos.Output;
 using Api_Sistema_Usuarios.Services;
 using Dapper;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace Api_Sistema_Usuarios.Repositories
             _dbService = dbService;
         }
 
-        public async Task<(int idGenerado, int resultado, string mensaje)> Create(VariableCreateRequestDto variableDto) // Modificado para usar DTO de entrada
+        public async Task<(int idGenerado, int resultado, string mensaje)> Create(VariableCreateRequestDto variableDto) 
         {
             using var connection = _dbService.CreateConnection();
             var parameters = new DynamicParameters();
@@ -44,8 +44,6 @@ namespace Api_Sistema_Usuarios.Repositories
             parameters.Add("p_resultado", dbType: DbType.Int32, direction: ParameterDirection.Output);
             parameters.Add("p_mensaje", dbType: DbType.String, direction: ParameterDirection.Output, size: 500);
             
-            // Dapper mapeará las columnas del SP (Id, Nombre, Valor, Tipo)
-            // a las propiedades del VariableResponseDto.
             var result = await connection.QueryFirstOrDefaultAsync<VariableResponseDto>("PKG_VARIABLES_READ_BY_ID", parameters, commandType: CommandType.StoredProcedure);
             
             return (
@@ -63,8 +61,6 @@ namespace Api_Sistema_Usuarios.Repositories
             parameters.Add("p_resultado", dbType: DbType.Int32, direction: ParameterDirection.Output);
             parameters.Add("p_mensaje", dbType: DbType.String, direction: ParameterDirection.Output, size: 500);
             
-            // Dapper mapeará las columnas del SP (Id, Nombre, Valor, Tipo)
-            // a las propiedades del VariableResponseDto.
             var result = await connection.QueryFirstOrDefaultAsync<VariableResponseDto>("PKG_VARIABLES_READ_BY_NAME", parameters, commandType: CommandType.StoredProcedure);
             
             return (
@@ -83,7 +79,6 @@ namespace Api_Sistema_Usuarios.Repositories
             parameters.Add("p_resultado", dbType: DbType.Int32, direction: ParameterDirection.Output);
             parameters.Add("p_mensaje", dbType: DbType.String, direction: ParameterDirection.Output, size: 500);
 
-            // El SP ahora devuelve directamente un conjunto de resultados, no a través de cursores
             var result = await connection.QueryAsync<VariableResponseDto>("PKG_VARIABLES_READ_ALL", parameters, commandType: CommandType.StoredProcedure);
             
             return (
@@ -93,7 +88,7 @@ namespace Api_Sistema_Usuarios.Repositories
             );
         }
 
-        public async Task<(int resultado, string mensaje)> Update(VariableUpdateRequestDto variableDto) // Modificado para usar DTO de entrada
+        public async Task<(int resultado, string mensaje)> Update(VariableUpdateRequestDto variableDto) 
         {
             using var connection = _dbService.CreateConnection();
             var parameters = new DynamicParameters();
